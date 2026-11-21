@@ -1,0 +1,1965 @@
+/* ===================================
+   洪惟仁教授學術網站 - 暖色調人文風格
+   =================================== */
+
+/* CSS 變數定義 */
+:root {
+  /* 主色調 - 暖色系 */
+  --color-bg-primary: #FAF8F5;      /* 米白背景 */
+  --color-bg-secondary: #F5F2ED;    /* 淺象牙 */
+  --color-bg-card: #FFFFFF;         /* 卡片白 */
+  --color-bg-navbar: #F7F5F0;       /* 導航列背景 */
+
+  /* 文字色 */
+  --color-text-primary: #3D3029;    /* 深褐主文字 */
+  --color-text-secondary: #6B5D52;  /* 中褐次要文字 */
+  --color-text-muted: #9A8B7D;      /* 淺褐輔助文字 */
+
+  /* 強調色 */
+  --color-accent-primary: #8B5A2B;  /* 古銅色 - 主要強調 */
+  --color-accent-gold: #B8860B;     /* 古金色 - 標題 */
+  --color-accent-link: #A0522D;     /* 赭石色 - 連結 */
+  --color-accent-hover: #CD853F;    /* 秘魯色 - 懸停 */
+  --color-accent-active: #722F37;   /* 酒紅色 - 活躍狀態 */
+
+  /* 邊框和陰影 */
+  --color-border: #E5DED5;
+  --color-border-light: #EDE8E1;
+  --shadow-sm: 0 1px 3px rgba(61, 48, 41, 0.08);
+  --shadow-md: 0 4px 12px rgba(61, 48, 41, 0.1);
+  --shadow-lg: 0 8px 24px rgba(61, 48, 41, 0.12);
+
+  /* 字體 */
+  --font-serif: "Noto Serif TC", "Source Han Serif TC", "Georgia", serif;
+  --font-sans: "Noto Sans TC", "Source Han Sans TC", "Microsoft JhengHei", sans-serif;
+
+  /* 間距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 60px;
+
+  /* 過渡效果 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 全域樣式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face{
+    font-family: tauhu-oo;
+	src: local("TauhuOo20.05-Regular"),
+	 url(https://tauhu.tw/TauhuOo20.05-Regular.woff2) format("woff2"),
+	 url(https://tauhu.tw/TauhuOo20.05-Regular.otf) format("opentype");
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 選取文字樣式 */
+::selection {
+  background-color: var(--color-accent-gold);
+  color: white;
+}
+
+/* ===================================
+   首頁樣式
+   =================================== */
+.homepage {
+  min-height: 100vh;
+  background-image: url('/sin-pan/images/pattern12.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-header {
+  padding: 40px 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.homepage-logo img {
+  max-width: 450px;
+  height: auto;
+}
+
+.homepage-carousel {
+  width: 600px;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-track img {
+  height: 120px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.homepage-content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 40px 40px;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.homepage-photo {
+  flex-shrink: 0;
+}
+
+.homepage-photo img {
+  width: 320px;
+  height: 420px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.homepage-photo img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(61, 48, 41, 0.2);
+}
+
+.homepage-nav {
+  background: transparent;
+  padding: 40px;
+  min-width: 450px;
+  text-align: center;
+}
+
+.homepage-nav h2 {
+  margin-bottom: 30px;
+  color: var(--color-accent-primary);
+  text-align: center;
+  font-size: 24px;
+  font-family: var(--font-serif);
+}
+
+.homepage-nav ul {
+  list-style: none;
+}
+
+.homepage-nav li {
+  margin: 0;
+  padding: 0;
+}
+
+.homepage-nav a {
+  display: block;
+  position: relative;
+  z-index: 1;
+  padding: 12px 20px;
+  text-decoration: none;
+  text-align: left;
+  border-bottom: 2px dotted var(--color-text-primary);
+  color: var(--color-text-primary);
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  white-space: nowrap;
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.homepage-nav a:before,
+.homepage-nav a:after {
+  content: '';
+  position: absolute;
+  transition: inherit;
+  z-index: -1;
+}
+
+.homepage-nav a:before,
+.homepage-nav a:after {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+}
+
+.homepage-nav a:hover:before,
+.homepage-nav a:hover:after {
+  width: 100%;
+}
+
+.homepage-nav a:hover:after {
+  background: linear-gradient(90deg, rgba(184, 134, 11, 0.15), rgba(255, 255, 255, 0.9));
+  transition-delay: .35s;
+}
+
+.homepage-nav a:hover {
+  color: var(--color-accent-primary);
+  transition-delay: .5s;
+}
+
+.homepage-nav a .nav-title-zh {
+  display: inline;
+  font-size: 22px;
+  font-family: var(--font-serif);
+  color: inherit;
+  font-weight: 700;
+  letter-spacing: 8px;
+  margin-right: 8px;
+}
+
+.homepage-nav a .nav-title-en {
+  display: inline;
+  font-size: 13px;
+  color: var(--color-accent-link);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.homepage-footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text-muted);
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+/* ===================================
+   導航列（內頁）
+   =================================== */
+.navbar {
+  background-color: var(--color-bg-navbar);
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: box-shadow var(--transition-normal);
+}
+
+.navbar:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.navbar-logo img {
+  height: 80px;
+  width: auto;
+  transition: opacity var(--transition-fast);
+}
+
+.navbar-logo img:hover {
+  opacity: 0.85;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.navbar-menu > li {
+  position: relative;
+}
+
+.navbar-menu > li > a,
+.navbar-menu > li > span {
+  display: block;
+  padding: 10px 18px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* 底線動畫效果 */
+.navbar-menu > li > a::after,
+.navbar-menu > li > span::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-hover));
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.navbar-menu > li > a:hover::after,
+.navbar-menu > li > span:hover::after,
+.navbar-menu > li.active > a::after,
+.navbar-menu > li.active > span::after {
+  width: 60%;
+}
+
+.navbar-menu > li > a:hover,
+.navbar-menu > li > span:hover,
+.navbar-menu > li.active > a,
+.navbar-menu > li.active > span {
+  color: var(--color-accent-primary);
+  background-color: rgba(184, 134, 11, 0.08);
+}
+
+/* 下拉選單 */
+.navbar-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-bg-card);
+  min-width: 180px;
+  box-shadow: var(--shadow-lg);
+  border-radius: 8px;
+  margin-top: 0;
+  padding-top: 8px;
+  list-style: none;
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+/* 用偽元素填補間隙，避免游標移動時選單消失 */
+.navbar-menu > li.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: transparent;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-menu > li:hover .navbar-dropdown {
+  display: block;
+}
+
+.navbar-dropdown li {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.navbar-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.navbar-dropdown a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.navbar-dropdown a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-accent-gold);
+  transform: scaleY(0);
+  transition: transform var(--transition-fast);
+}
+
+.navbar-dropdown a:hover {
+  background-color: rgba(184, 134, 11, 0.06);
+  color: var(--color-accent-primary);
+  padding-left: 25px;
+}
+
+.navbar-dropdown a:hover::before {
+  transform: scaleY(1);
+}
+
+/* 影音以下的次目錄（2026-11-15，layouts/partials/nav-sub.html）：
+   項目長短不一（子站全名），寬度跟著內容、太長就換行 */
+.navbar-dropdown {
+  width: max-content;
+  max-width: 26em;
+}
+
+/* 第一項「總覽」只給手機用（手機點上層是展開、不換頁） */
+.navbar-dropdown .nav-overview {
+  display: none;
+}
+
+/* 靠右的幾區往左展開，免得超出視窗 */
+.navbar-menu > li.dropdown-right > .navbar-dropdown {
+  left: auto;
+  right: 0;
+}
+
+/* 課程講義十幾門課：排兩欄，免得比螢幕還長 */
+.navbar-dropdown.cols-2 {
+  column-count: 2;
+  column-gap: 0;
+  width: 400px;
+  max-width: none;
+}
+
+.navbar-dropdown.cols-2 li {
+  break-inside: avoid;
+}
+
+/* 搜尋按鈕 */
+.navbar-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 20px;
+  color: var(--color-text-muted);
+  transition: all var(--transition-normal);
+  border-radius: 50%;
+}
+
+.navbar-search-btn:hover {
+  color: var(--color-accent-primary);
+  background-color: rgba(184, 134, 11, 0.1);
+  transform: scale(1.1);
+}
+
+/* ===================================
+   漢堡選單按鈕（行動裝置）
+   =================================== */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  margin-left: auto;
+}
+
+.navbar-toggle:hover {
+  background-color: rgba(184, 134, 11, 0.1);
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+.hamburger-line + .hamburger-line {
+  margin-top: 6px;
+}
+
+/* 漢堡選單展開時的 X 動畫 */
+.navbar-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===================================
+   內容頁面布局
+   =================================== */
+.content-wrapper {
+  background-color: var(--color-bg-secondary);
+  min-height: calc(100vh - 80px);
+}
+
+/* 區塊子導航 */
+.section-nav {
+  background: linear-gradient(180deg, var(--color-bg-navbar) 0%, var(--color-bg-secondary) 100%);
+  padding: 15px 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.section-nav-title {
+  font-size: 20px;
+  font-family: var(--font-serif);
+  color: var(--color-accent-primary);
+  margin-bottom: 20px;
+  font-weight: bold;
+  display: none;
+}
+
+.section-nav-menu {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+}
+
+.section-nav-menu a {
+  display: block;
+  padding: 10px 15px 13px;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: 6px 6px 0 0;
+  transition: all var(--transition-fast);
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+
+/* 底線從中間往兩邊展開，跟主選單同一個行為，只是顏色用酒紅、寬度到滿 */
+.section-nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-accent-active);
+  transform: translateX(-50%);
+  transition: width var(--transition-fast);
+}
+
+.section-nav-menu a:hover::after,
+.section-nav-menu a.active::after {
+  width: 100%;
+}
+
+.section-nav-menu a:hover {
+  color: var(--color-accent-active);
+  background-color: rgba(114, 47, 55, 0.06);
+}
+
+.section-nav-menu a.active {
+  color: var(--color-accent-active);
+}
+
+/* 主要內容區 */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl) 80px;
+}
+
+.content-section {
+  background: transparent;
+  padding: var(--spacing-xl);
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 30px;
+}
+
+/* 標題樣式 - 使用宋體 */
+.content-section h1 {
+  font-size: 36px;
+  font-family: var(--font-serif);
+  color: var(--color-accent-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+/* 標題裝飾線 */
+.content-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-hover));
+  border-radius: 2px;
+}
+
+.content-section h2 {
+  font-size: 24px;
+  font-family: var(--font-serif);
+  color: var(--color-accent-primary);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-light);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.content-section h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.content-section h3 {
+  font-size: 20px;
+  font-family: var(--font-serif);
+  color: var(--color-text-primary);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.content-section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.content-section p {
+  margin-bottom: 18px;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+  font-size: 17px;
+  text-align: justify;
+}
+
+/* 連結樣式 */
+.content-section a {
+  color: var(--color-accent-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.content-section a:hover {
+  color: var(--color-accent-hover);
+  border-bottom-color: var(--color-accent-hover);
+}
+
+/* 列表頁日期和來源樣式 */
+.content-section .date {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-right: 8px;
+  font-family: var(--font-sans);
+}
+
+.content-section .source {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-left: 8px;
+  font-family: var(--font-serif);
+}
+
+.content-section strong {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.content-section hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--spacing-xl) 0;
+}
+
+/* 分類次目錄（書目頁頂端，2026-11-18；目前只開學術論文，見 list.html） */
+.content-section .cat-toc {
+  max-width: 960px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.content-section .cat-toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.content-section .cat-toc li {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.content-section .cat-toc a {
+  display: inline-block;
+  padding: 7px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  font-family: var(--font-serif);
+}
+
+.content-section .cat-toc a:hover {
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-active);
+  background: rgba(114, 47, 55, 0.04);
+}
+
+.content-section .cat-toc-n {
+  margin-left: 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-family: var(--font-sans);
+}
+
+.content-section h3 .cat-top {
+  float: right;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
+}
+
+/* 列表樣式 */
+.content-section ul,
+.content-section ol {
+  margin-bottom: 18px;
+  padding-left: 24px;
+}
+
+.content-section li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+/* ===================================
+   頁尾
+   =================================== */
+.content-footer {
+  background-color: var(--color-bg-navbar);
+  padding: 25px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ===================================
+   寫真館 - 照片網格
+   =================================== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.photo-item {
+  background: var(--color-bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--color-border-light);
+}
+
+.photo-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.photo-item a {
+  display: block;
+  text-decoration: none;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform var(--transition-slow);
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+}
+
+.photo-caption {
+  padding: 18px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.photo-caption strong {
+  display: block;
+  font-size: 15px;
+  font-family: var(--font-serif);
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.photo-caption p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+/* ===================================
+   課程講義（/teach/）- 課程標籤頁
+   =================================== */
+.course-container {
+  margin-top: 20px;
+  background: var(--color-bg-card);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 30px;
+  border: 1px solid var(--color-border-light);
+}
+
+.course-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.course-tab {
+  padding: 10px 16px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.course-tab:hover {
+  background: var(--color-bg-primary);
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-gold);
+}
+
+.course-tab.active {
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-gold));
+  color: white;
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.course-content {
+  display: none;
+  padding: 20px 0 0 0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.course-content.active {
+  display: block;
+}
+
+.course-content h3 {
+  font-size: 22px;
+  font-family: var(--font-serif);
+  color: var(--color-accent-primary);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-accent-gold);
+}
+
+.course-content h4 {
+  font-size: 17px;
+  color: var(--color-text-primary);
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.course-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.course-content ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background var(--transition-fast);
+}
+
+.course-content ul li:hover {
+  background: rgba(184, 134, 11, 0.04);
+  padding-left: 8px;
+}
+
+.course-content ul li:last-child {
+  border-bottom: none;
+}
+
+.course-content ul li a {
+  color: var(--color-accent-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.course-content ul li a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ===================================
+   按鈕樣式
+   =================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-gold));
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all var(--transition-normal);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-accent-primary);
+  color: white;
+}
+
+/* ===================================
+   聯絡我
+   =================================== */
+.contact-section {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 40px 20px;
+}
+
+.contact-section .contact-image {
+  max-width: 200px;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.contact-section .contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-section .contact-greeting {
+  font-size: 28px;
+  font-family: var(--font-serif);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.contact-section .contact-email {
+  font-size: 20px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  margin-bottom: 24px;
+}
+
+.contact-section .contact-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--color-accent-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-bottom: none;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-section .contact-btn:hover {
+  background: var(--color-accent-gold);
+  color: white;
+  border-bottom: none;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===================================
+   響應式設計
+   =================================== */
+@media (max-width: 1024px) {
+  .homepage-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 40px 20px;
+  }
+
+  .homepage-logo img {
+    max-width: 350px;
+  }
+
+  .homepage-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homepage-carousel {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .homepage-nav {
+    min-width: auto;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .main-content {
+    padding: var(--spacing-xl) 40px;
+  }
+}
+
+/* 頂端選單有十項（研究／教學／文學與課程講義並列），分界是量出來的最小值：
+   一排原尺寸要 1225px、縮小版要 867px，各加 17px 給 Windows 的捲軸。
+   1242px 以上原尺寸；884–1241px 把間距、字級與 logo 縮小一點；
+   883px 以下改用漢堡選單（下一段，main.js 也用同一個寬度判斷）。
+   選單標籤或字級有變動就要重量：在各段寬度下把 .navbar 設成 width: min-content，量它的寬。 */
+@media (min-width: 884px) and (max-width: 1241px) {
+  .navbar {
+    padding: 12px 20px;
+    gap: 16px;
+  }
+
+  .navbar-logo img {
+    height: 64px;
+  }
+
+  .navbar-menu {
+    gap: 2px;
+    margin-right: 0;
+  }
+
+  .navbar-menu > li > a,
+  .navbar-menu > li > span {
+    padding: 10px 10px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 883px) {
+  /* 顯示漢堡選單按鈕 */
+  .navbar-toggle {
+    display: flex !important;
+    order: 2;
+  }
+
+  /* 隱藏桌面版選單 */
+  .navbar-menu {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--color-bg-card);
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: var(--shadow-lg);
+    border-top: 1px solid var(--color-border-light);
+    max-height: 70vh;
+    max-height: calc(100dvh - 80px);  /* 選單有十項，盡量用滿螢幕高度；不支援 dvh 的瀏覽器用上一行 */
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 999;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 選單展開時顯示 */
+  .navbar-menu.active {
+    display: flex !important;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar {
+    position: relative;
+    flex-wrap: nowrap;
+    padding: 12px 20px;
+    justify-content: space-between;
+  }
+
+  .navbar-logo {
+    order: 1;
+  }
+
+  .navbar-logo img {
+    height: 50px;
+  }
+
+  .navbar-search {
+    display: none !important;
+  }
+
+  /* 選單項目樣式 */
+  .navbar-menu > li {
+    width: 100%;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .navbar-menu > li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-menu > li > a,
+  .navbar-menu > li > span {
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 移除桌面版的底線動畫 */
+  .navbar-menu > li > a::after,
+  .navbar-menu > li > span::after {
+    display: none;
+  }
+
+  /* 移除桌面版的偽元素間隙填補 */
+  .navbar-menu > li.has-dropdown::after {
+    display: none;
+  }
+
+  /* 下拉選單基本樣式 - 預設隱藏 */
+  .navbar-menu .navbar-dropdown,
+  .navbar-menu > li:hover > .navbar-dropdown {
+    display: block !important;
+    position: static !important;
+    box-shadow: none;
+    margin-top: 0;
+    padding-top: 0;
+    background-color: var(--color-bg-secondary);
+    border-radius: 0;
+    border: none;
+    padding-left: 20px;
+    max-height: 0 !important;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  /* 點擊展開 */
+  .navbar-menu > li.dropdown-open > .navbar-dropdown {
+    max-height: 1600px !important;  /* 課程講義有十幾項；500px 會切掉 */
+  }
+
+  /* 手機：次目錄一欄、寬度滿版，第一項「總覽」顯示出來 */
+  .navbar-menu .navbar-dropdown,
+  .navbar-menu .navbar-dropdown.cols-2 {
+    width: auto;
+    max-width: none;
+    column-count: 1;
+  }
+
+  .navbar-menu .navbar-dropdown .nav-overview {
+    display: block;
+  }
+
+  /* 下拉箭頭指示器（上層是 span 或連結都要有；2026-11-15 前少了 display，被上面的 display:none 蓋掉、手機上看不到） */
+  .navbar-menu > li.has-dropdown > span::after,
+  .navbar-menu > li.has-dropdown > a::after {
+    display: block;
+    position: static;      /* 重設桌面版底線動畫的絕對定位、漸層與圓角（同一個 ::after） */
+    background: none;
+    border-radius: 0;
+    flex-shrink: 0;
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-text-muted);
+    border-bottom: 2px solid var(--color-text-muted);
+    transform: rotate(45deg);
+    transition: transform var(--transition-fast);
+    margin-left: 10px;
+  }
+
+  .navbar-menu > li.has-dropdown.dropdown-open > span::after,
+  .navbar-menu > li.has-dropdown.dropdown-open > a::after {
+    transform: rotate(-135deg);
+  }
+
+  .navbar-dropdown a {
+    padding: 12px 20px;
+  }
+
+  .navbar-dropdown a::before {
+    display: none;
+  }
+
+  .navbar-dropdown a:hover {
+    padding-left: 20px;
+    background-color: rgba(184, 134, 11, 0.08);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 30px;
+    --spacing-2xl: 40px;
+  }
+
+  .homepage-header {
+    padding: 20px;
+  }
+
+  .homepage-logo img {
+    max-width: 250px;
+  }
+
+  .homepage-photo img {
+    width: 240px;
+    height: 320px;
+  }
+
+  /* 首頁選單在手機上原本左右各留 60px，最長的一項（中文＋英文）會把頁面撐出橫向捲動；
+     左右邊距收到 16px，現在的十項在 320px 寬也放得下 */
+  .homepage-content {
+    padding: 20px 16px 40px;
+  }
+
+  .homepage-nav {
+    min-width: auto;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .homepage-nav a .nav-title-zh {
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+
+  .homepage-nav a .nav-title-en {
+    font-size: 11px;
+  }
+
+  .navbar-logo img {
+    height: 45px;
+  }
+
+  .main-content {
+    padding: var(--spacing-lg) 20px;
+  }
+
+  .content-section {
+    padding: var(--spacing-lg);
+  }
+
+  .content-section h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .content-section h2 {
+    font-size: 20px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .course-tabs {
+    gap: 6px;
+  }
+
+  .course-tab {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===================================
+   Lightbox 燈箱效果
+   =================================== */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  cursor: pointer;
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5vh;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+  animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.lightbox-caption {
+  text-align: center;
+  color: white;
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: var(--font-serif);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Lightbox 觸發器樣式 */
+.photo-item a.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+/* ===================================
+   最新動態（部落格列表與單篇）
+   =================================== */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-item .date {
+  margin-right: 10px;
+}
+
+.post-item > a {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.post-summary {
+  margin: 6px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+.post-meta {
+  margin-top: -10px;
+  margin-bottom: 24px;
+}
+
+.post-back {
+  margin-top: 36px;
+}
+
+.course-empty {
+  color: var(--color-text-muted);
+}
+
+/* 課程已移到別區（例如文學網站）時，在原課程頁籤留的一行提示 */
+.course-moved {
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  border-left: 3px solid var(--color-accent-gold);
+  background-color: rgba(184, 134, 11, 0.06);
+  color: var(--color-text-secondary);
+}
+
+/* ===================================
+   搜尋頁
+   =================================== */
+.search-form input {
+  width: 100%;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 17px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+}
+
+.search-form input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.search-status {
+  margin: 16px 0 0;
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+
+.search-page h2 {
+  margin-top: 36px;
+  font-size: 20px;
+}
+
+.search-page mark {
+  background: #f3e3a8;
+  background: color-mix(in srgb, var(--color-accent-gold) 35%, transparent);
+  color: inherit;
+  padding: 0 1px;
+}
+
+.search-suggest {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-suggest-label {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.search-suggest button {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-suggest button:hover {
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+/* ===================================
+   列印樣式
+   =================================== */
+/* 頂端選單是 sticky，錨點（/teach/#links、書目頁的分類小標 #…）捲到的標題會被它蓋住：
+   目標元素上方留出選單的高度＋16px。選單高：≥1242 寬 120px、884–1241 寬 98px、≤883 寬 79～84px
+   （2026-11-18 量的；原本一律 96px，寬螢幕的小標題會被蓋掉 24px） */
+[id] {
+  scroll-margin-top: 136px;
+}
+
+@media (max-width: 1241px) {
+  [id] {
+    scroll-margin-top: 114px;
+  }
+}
+
+@media (max-width: 883px) {
+  [id] {
+    scroll-margin-top: 96px;
+  }
+}
+
+@media print {
+  .navbar,
+  .section-nav,
+  .navbar-search,
+  .content-footer {
+    display: none;
+  }
+
+  .content-wrapper {
+    background: white;
+  }
+
+  .content-section {
+    padding: 0;
+  }
+
+  .content-section h1 {
+    color: black;
+  }
+
+  .content-section a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+/* ===================================
+   選單重整（2026-11-22，分支 nav-7；規則見 layouts/partials/navbar.html）
+   =================================== */
+
+/* 頂端選單右邊的工具連結（最新動態、相關連結）：比七項主選單小一級 */
+.navbar-util {
+  display: flex;
+  gap: 16px;
+  margin-right: 14px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.navbar-util a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navbar-util a:hover,
+.navbar-util a.active {
+  color: var(--color-accent-primary);
+}
+
+.navbar-menu > li.navbar-util-mobile {
+  display: none;
+}
+
+@media (max-width: 883px) {
+  .navbar-util {
+    display: none;
+  }
+
+  .navbar-menu > li.navbar-util-mobile {
+    display: block;
+  }
+}
+
+/* 首頁右上角的工具連結：首頁全是書法與明體，這裡也用明體 */
+.homepage {
+  position: relative;
+}
+
+.homepage-util {
+  position: absolute;
+  top: 18px;
+  right: 34px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.homepage-util a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.homepage-util a:hover {
+  color: var(--color-accent-primary);
+}
+
+.homepage-util svg {
+  display: block;
+}
+
+/* 首頁七列：跟相片上下置中對齊 */
+.homepage-content {
+  align-items: center;
+}
+
+.homepage-nav {
+  padding: 0 40px;
+}
+
+/* 螢幕矮的時候（例如 1920×1080 放大 150%），標頭、相片、列距縮一點，七列才都在第一個畫面 */
+@media (max-height: 800px) and (min-width: 1025px) {
+  .homepage-header {
+    padding: 30px 80px 4px;
+    align-items: center;
+  }
+
+  .homepage-logo img {
+    max-width: 300px;
+  }
+
+  .homepage-carousel,
+  .carousel-track img {
+    height: 88px;
+  }
+
+  .homepage-content {
+    padding: 4px 40px 16px;
+  }
+
+  .homepage-photo img {
+    width: 262px;
+    height: 344px;
+  }
+
+  .homepage-nav a {
+    padding: 5px 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .homepage-util {
+    position: static;
+    justify-content: center;
+    padding-top: 14px;
+  }
+}
+
+/* 「網站」頁：一站一格（截圖、站名、年份與一句話） */
+.sites-group {
+  margin-top: 44px;
+}
+
+.content-section .sites-group h2 {
+  margin: 0 0 22px;
+  padding: 0 0 10px;
+  border-top: none;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 20px;
+  color: var(--color-text-primary);
+}
+
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 38px 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content-section .sites-grid a {
+  display: block;
+  border-bottom: none;
+  color: inherit;
+}
+
+.sites-shot {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+
+.content-section .sites-shot img {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform var(--transition-slow);
+}
+
+.sites-grid a:hover .sites-shot img {
+  transform: scale(1.03);
+}
+
+.sites-title {
+  display: block;
+  margin-top: 13px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-text-primary);
+  transition: color var(--transition-fast);
+}
+
+.sites-grid a:hover .sites-title {
+  color: var(--color-accent-active);
+}
+
+.sites-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.sites-rest {
+  margin: 26px 0 0;
+  padding-left: 1.2em;
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .sites-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .sites-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 「網站」頁：年份與簡介、整理中的格子 */
+.sites-years {
+  margin-right: 0.9em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sites-blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 8 / 5;
+  background: var(--color-bg-secondary);
+  font-family: var(--font-serif);
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: var(--color-text-muted);
+}
+
+.sites-pending .sites-title {
+  color: var(--color-text-secondary);
+}
+
+/* 頁尾的「總目錄」連結 */
+.footer-toc {
+  margin-left: 1.5em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.footer-toc:hover {
+  color: var(--color-accent-primary);
+}
+
+/* 總目錄頁（/toc/）：一棵樹，分欄排 */
+.toc-tree {
+  columns: 3 260px;
+  column-gap: 48px;
+  margin-top: 10px;
+}
+
+.toc-branch {
+  break-inside: avoid;
+  margin: 0 0 30px;
+}
+
+.content-section .toc-branch h2 {
+  margin: 0 0 8px;
+  padding: 0 0 6px;
+  border-top: none;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 20px;
+}
+
+.content-section .toc-branch h2 a {
+  color: var(--color-accent-primary);
+}
+
+.toc-branch ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-branch li {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* 第三層往內縮，左邊一條細線，像檔案目錄樹 */
+.toc-branch ul ul {
+  margin: 2px 0 6px 6px;
+  padding-left: 14px;
+  border-left: 1px solid var(--color-border);
+}
+
+.toc-branch ul ul li {
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.content-section .toc-branch ul ul a {
+  color: var(--color-text-secondary);
+}
+
+.toc-branch .toc-group {
+  margin-top: 8px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+}
+
+.toc-n {
+  margin-left: 0.5em;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}

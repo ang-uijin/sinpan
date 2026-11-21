@@ -1,0 +1,230 @@
+// Initialize carousel for homepage
+document.addEventListener('DOMContentLoaded', function() {
+  // Carousel functionality
+  const carouselTrack = document.querySelector('.carousel-track');
+  if (carouselTrack) {
+    // Clone all images for seamless loop
+    const images = carouselTrack.querySelectorAll('img');
+    images.forEach(img => {
+      const clone = img.cloneNode(true);
+      carouselTrack.appendChild(clone);
+    });
+  }
+
+  // 漢堡選單切換
+  const navbarToggle = document.querySelector('.navbar-toggle');
+  const navbarMenu = document.querySelector('.navbar-menu');
+
+  if (navbarToggle && navbarMenu) {
+    navbarToggle.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+      this.setAttribute('aria-expanded', !isExpanded);
+      this.classList.toggle('active');
+      navbarMenu.classList.toggle('active');
+
+      // 關閉選單時，同時關閉所有下拉選單
+      if (isExpanded) {
+        document.querySelectorAll('.navbar-menu > li.dropdown-open').forEach(item => {
+          item.classList.remove('dropdown-open');
+        });
+      }
+    });
+
+    // 點擊選單外部時關閉選單
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.navbar')) {
+        navbarToggle.classList.remove('active');
+        navbarToggle.setAttribute('aria-expanded', 'false');
+        navbarMenu.classList.remove('active');
+        document.querySelectorAll('.navbar-menu > li.dropdown-open').forEach(item => {
+          item.classList.remove('dropdown-open');
+        });
+      }
+    });
+  }
+
+  // 行動版下拉選單切換（使用事件委派）
+  document.addEventListener('click', function(e) {
+    // 手機：點了次目錄裡的連結就收起選單（同一頁的 #小標題 不會換頁，選單不收會蓋住內容）
+    const subLink = e.target.closest('.navbar-dropdown a');
+    if (subLink && window.innerWidth <= 883 && navbarToggle && navbarMenu) {
+      navbarToggle.classList.remove('active');
+      navbarToggle.setAttribute('aria-expanded', 'false');
+      navbarMenu.classList.remove('active');
+      document.querySelectorAll('.navbar-menu > li.dropdown-open').forEach(item => {
+        item.classList.remove('dropdown-open');
+      });
+      return;
+    }
+
+    // 檢查是否點擊了 has-dropdown 的上層項目：span（前四項）或連結（影音以下，2026-11-15 起也有次目錄；
+    // 手機點了是展開，不換頁——次目錄第一項「總覽」才連到該區）
+    const dropdownTrigger = e.target.closest('.navbar-menu > li.has-dropdown > span, .navbar-menu > li.has-dropdown > a');
+
+    if (dropdownTrigger && window.innerWidth <= 883) {  // 與 style.css 漢堡選單的斷點一致
+      e.preventDefault();
+      e.stopPropagation();
+
+      const parentItem = dropdownTrigger.parentElement;
+
+      // 關閉其他已開啟的下拉選單
+      document.querySelectorAll('.navbar-menu > li.dropdown-open').forEach(item => {
+        if (item !== parentItem) {
+          item.classList.remove('dropdown-open');
+        }
+      });
+
+      // 切換當前下拉選單
+      parentItem.classList.toggle('dropdown-open');
+    }
+  });
+
+  // 視窗大小改變時重置選單狀態
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (window.innerWidth > 883) {
+        // 桌面版：重置所有行動版狀態
+        if (navbarToggle) {
+          navbarToggle.classList.remove('active');
+          navbarToggle.setAttribute('aria-expanded', 'false');
+        }
+        if (navbarMenu) {
+          navbarMenu.classList.remove('active');
+        }
+        document.querySelectorAll('.navbar-menu > li.dropdown-open').forEach(item => {
+          item.classList.remove('dropdown-open');
+        });
+      }
+    }, 100);
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      // 分類小標題的 id 是 urlize 的百分比編碼（#%E5%AD%B8…），querySelector 會把 % 當成不合法的選擇器而丟例外，
+      // 所以用 getElementById；找不到再試解碼後的（2026-11-18 學術論文分類次目錄）
+      const id = this.getAttribute('href').slice(1);
+      let target = id ? document.getElementById(id) : null;
+      if (!target && id) { try { target = document.getElementById(decodeURIComponent(id)); } catch (err) {} }
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Lightbox 燈箱功能 (for /sin-pan/photo/ page)
+  const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+
+  if (lightboxTriggers.length > 0) {
+    // 建立 lightbox overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = `
+      <div class="lightbox-content">
+        <button class="lightbox-close" aria-label="關閉">&times;</button>
+        <img src="" alt="">
+        <div class="lightbox-caption"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const lightboxImg = overlay.querySelector('img');
+    const lightboxCaption = overlay.querySelector('.lightbox-caption');
+    const closeBtn = overlay.querySelector('.lightbox-close');
+
+    // 點擊照片開啟 lightbox
+    lightboxTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const imgSrc = this.getAttribute('href');
+        const caption = this.closest('.photo-item').querySelector('.photo-caption strong');
+
+        lightboxImg.src = imgSrc;
+        lightboxImg.alt = caption ? caption.textContent : '';
+        lightboxCaption.textContent = caption ? caption.textContent : '';
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // 關閉 lightbox
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        closeLightbox();
+      }
+    });
+
+    // ESC 鍵關閉
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Course tabs functionality (for /sin-pan/teach/ page)
+  const courseTabs = document.querySelectorAll('.course-tab');
+  const courseContents = document.querySelectorAll('.course-content');
+
+  if (courseTabs.length > 0) {
+    courseTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const courseId = this.getAttribute('data-course');
+
+        // Remove active class from all tabs and contents
+        courseTabs.forEach(t => t.classList.remove('active'));
+        courseContents.forEach(c => c.classList.remove('active'));
+
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        const targetContent = document.getElementById(courseId);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+
+    // Open the tab named in the URL hash (e.g. /sin-pan/teach/#online)
+    const hashCourse = window.location.hash.slice(1);
+    if (hashCourse === 'links') { window.location.replace('/sin-pan/links/'); }   // 2026-10-21 推薦連結分頁搬去 /sin-pan/links/（相關連結），舊網址轉過去
+    const hashTab = Array.from(courseTabs).find(t => t.getAttribute('data-course') === hashCourse);
+    if (hashTab) {
+      hashTab.click();
+      // 分頁內容原本是 display:none，瀏覽器載入時捲不到它；打開後再捲一次（scroll-margin-top 會避開固定選單）
+      const opened = document.getElementById(hashCourse);
+      if (opened) {
+        opened.scrollIntoView();
+      }
+    }
+
+    // 已經在這頁、從頂端選單的次目錄點另一門課：網址只換 #，不會重新載入，要自己切頁籤
+    window.addEventListener('hashchange', function() {
+      const id = window.location.hash.slice(1);
+      const tab = Array.from(courseTabs).find(t => t.getAttribute('data-course') === id);
+      if (tab) {
+        tab.click();
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView();
+        }
+      }
+    });
+  }
+});
