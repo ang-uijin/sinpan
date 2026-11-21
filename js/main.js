@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Lightbox 燈箱功能 (for /sin-pan/photo/ page)
+  // Lightbox 燈箱功能 (for /sinpan/photo/ page)
   const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
 
   if (lightboxTriggers.length > 0) {
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Course tabs functionality (for /sin-pan/teach/ page)
+  // Course tabs functionality (for /sinpan/teach/ page)
   const courseTabs = document.querySelectorAll('.course-tab');
   const courseContents = document.querySelectorAll('.course-content');
 
@@ -201,9 +201,9 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    // Open the tab named in the URL hash (e.g. /sin-pan/teach/#online)
+    // Open the tab named in the URL hash (e.g. /sinpan/teach/#online)
     const hashCourse = window.location.hash.slice(1);
-    if (hashCourse === 'links') { window.location.replace('/sin-pan/links/'); }   // 2026-10-21 推薦連結分頁搬去 /sin-pan/links/（相關連結），舊網址轉過去
+    if (hashCourse === 'links') { window.location.replace('/sinpan/links/'); }   // 2026-10-21 推薦連結分頁搬去 /sinpan/links/（相關連結），舊網址轉過去
     const hashTab = Array.from(courseTabs).find(t => t.getAttribute('data-course') === hashCourse);
     if (hashTab) {
       hashTab.click();

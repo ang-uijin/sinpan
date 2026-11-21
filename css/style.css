@@ -86,7 +86,7 @@ body {
    =================================== */
 .homepage {
   min-height: 100vh;
-  background-image: url('/sin-pan/images/pattern12.jpg');
+  background-image: url('/sinpan/images/pattern12.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
