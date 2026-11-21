@@ -1122,11 +1122,11 @@ body {
 }
 
 /* 頂端選單有十項（研究／教學／文學與課程講義並列），分界是量出來的最小值：
-   一排原尺寸要 1225px、縮小版要 867px，各加 17px 給 Windows 的捲軸。
-   1242px 以上原尺寸；884–1241px 把間距、字級與 logo 縮小一點；
-   883px 以下改用漢堡選單（下一段，main.js 也用同一個寬度判斷）。
+   一排原尺寸要 1123px、縮小版要 809px（2026-11-22 選單改成七項後重量），各加 17px 給 Windows 的捲軸。
+   1141px 以上原尺寸；827–1140px 把間距、字級與 logo 縮小一點；
+   826px 以下改用漢堡選單（下一段，main.js 也用同一個寬度判斷）。
    選單標籤或字級有變動就要重量：在各段寬度下把 .navbar 設成 width: min-content，量它的寬。 */
-@media (min-width: 884px) and (max-width: 1241px) {
+@media (min-width: 827px) and (max-width: 1140px) {
   .navbar {
     padding: 12px 20px;
     gap: 16px;
@@ -1148,7 +1148,7 @@ body {
   }
 }
 
-@media (max-width: 883px) {
+@media (max-width: 826px) {
   /* 顯示漢堡選單按鈕 */
   .navbar-toggle {
     display: flex !important;
@@ -1616,13 +1616,13 @@ body {
   scroll-margin-top: 136px;
 }
 
-@media (max-width: 1241px) {
+@media (max-width: 1140px) {
   [id] {
     scroll-margin-top: 114px;
   }
 }
 
-@media (max-width: 883px) {
+@media (max-width: 826px) {
   [id] {
     scroll-margin-top: 96px;
   }
@@ -1682,7 +1682,7 @@ body {
   display: none;
 }
 
-@media (max-width: 883px) {
+@media (max-width: 826px) {
   .navbar-util {
     display: none;
   }
